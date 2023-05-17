@@ -2,7 +2,15 @@ import { FC } from "react";
 import EventItem from "./EventItem";
 
 interface Props {
-  items;
+  items: {
+    id: string;
+    title: string;
+    description: string;
+    location: string;
+    date: string;
+    image: string;
+    isFeatured: boolean;
+  }[];
 }
 
 const EventList: FC<Props> = ({ items }) => {
