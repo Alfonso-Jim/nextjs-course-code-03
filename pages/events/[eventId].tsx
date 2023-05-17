@@ -1,7 +1,7 @@
 import React from "react";
 
-const SpecificEvent = () => {
+const SpecificEventPage = () => {
   return <div>Event Details Page</div>;
 };
 
-export default SpecificEvent;
+export default SpecificEventPage;
