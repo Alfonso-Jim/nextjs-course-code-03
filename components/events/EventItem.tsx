@@ -1,7 +1,10 @@
-import Link from "next/link";
 import { FC } from "react";
 
 import classes from "./EventItem.module.css";
+import Button from "../ui/Button";
+import DateIcon from "../icons/date-icon";
+import AddressIcon from "../icons/address-icon";
+import ArrowRightIcon from "../icons/arrow-right-icon";
 
 interface Props {
   title: string;
@@ -21,14 +24,21 @@ const EventItem: FC<Props> = ({ title, image, date, location, id }) => {
       <div className={classes.content}>
         <h2>{title}</h2>
         <div className={classes.date}>
+          <DateIcon />
           <time>{humanReadableDate}</time>
         </div>
         <div className={classes.address}>
+          <AddressIcon />
           <address>{formattedAddress}</address>
         </div>
-      </div>
-      <div className={classes.actions}>
-        <Link href={exploreLink}>Explore event...</Link>
+        <div className={classes.actions}>
+          <Button link={exploreLink}>
+            <span>Explore Event</span>
+            <span className={classes.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
+        </div>
       </div>
     </li>
   );
