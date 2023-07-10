@@ -1,9 +1,10 @@
-import EventList from "../../components/events/EventList";
-import EventsSearch from "../../components/events/EventsSearch";
-import { useRouter } from "next/router";
-import { getAllEvents } from "../../dummy-data";
+import EventList from '../../components/events/EventList';
+import EventsSearch from '../../components/events/EventsSearch';
+import { useRouter } from 'next/router';
+import { getAllEvents } from '../../dummy-data';
+import { NextPage } from 'next';
 
-const AllEventsPage = () => {
+const AllEventsPage: NextPage = () => {
   const allEvents = getAllEvents();
   const router = useRouter();
   const findEventsHandler = (year: string, month: string) => {
@@ -13,7 +14,7 @@ const AllEventsPage = () => {
   return (
     <>
       <EventsSearch onSearch={findEventsHandler} />
-      <EventList items={allEvents} />
+      <EventList events={allEvents} />
     </>
   );
 };
