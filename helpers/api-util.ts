@@ -1,13 +1,13 @@
-import { Events } from '../interfaces/Interfaces';
+import { Event } from '../interfaces/Interfaces';
 
 export async function getAllEvents() {
   const response = await fetch('https://nextjs-course-04-831d3-default-rtdb.firebaseio.com/events.json');
   const data = await response.json();
 
-  const transformedEvents: Events = { events: [] };
+  const transformedEvents: Array<Event> = [];
 
   for (const key in data) {
-    transformedEvents.events.push({
+    transformedEvents.push({
       id: key,
       ...data[key],
     });
@@ -17,6 +17,11 @@ export async function getAllEvents() {
 }
 
 export async function getFeaturedEvents() {
-  const allEvents: Events = await getAllEvents();
-  return allEvents.events.filter((event) => event.isFeatured);
+  const allEvents: Array<Event> = await getAllEvents();
+  return allEvents.filter((event) => event.isFeatured);
+}
+
+export async function getEventById(id: string) {
+  const allEvents: Array<Event> = await getAllEvents();
+  return allEvents.find((event) => event.id === id);
 }

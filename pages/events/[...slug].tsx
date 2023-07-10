@@ -1,17 +1,17 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { getFilteredEvents } from "../../dummy-data";
-import EventList from "../../components/events/EventList";
-import ResultsTitle from "../../components/events/ResultsTitle";
-import Button from "../../components/ui/Button";
-import ErrorAlert from "../../components/ui/ErrorAlert";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { getFilteredEvents } from '../../dummy-data';
+import EventList from '../../components/events/EventList';
+import ResultsTitle from '../../components/events/ResultsTitle';
+import Button from '../../components/ui/Button';
+import ErrorAlert from '../../components/ui/ErrorAlert';
 
 const FilteredEventsPage = () => {
   const router = useRouter();
   const filterData = router.query.slug;
 
   if (!filterData) {
-    return <p className="center">Loading filtered events...</p>;
+    return <p className='center'>Loading filtered events...</p>;
   }
 
   const filteredYear = Number(filterData[0]);
@@ -23,8 +23,8 @@ const FilteredEventsPage = () => {
         <ErrorAlert>
           <p>Invalid filters, please check your values!</p>
         </ErrorAlert>
-        <div className="center">
-          <Button link="/events">Show All Events</Button>
+        <div className='center'>
+          <Button link='/events'>Show All Events</Button>
         </div>
       </>
     );
@@ -38,8 +38,8 @@ const FilteredEventsPage = () => {
         <ErrorAlert>
           <p>No events found with current filters</p>
         </ErrorAlert>
-        <div className="center">
-          <Button link="/events">Show All Events</Button>
+        <div className='center'>
+          <Button link='/events'>Show All Events</Button>
         </div>
       </>
     );
@@ -50,7 +50,7 @@ const FilteredEventsPage = () => {
   return (
     <div>
       <ResultsTitle date={date} />
-      <EventList items={filteredEvents} />
+      <EventList events={filteredEvents} />
     </div>
   );
 };
