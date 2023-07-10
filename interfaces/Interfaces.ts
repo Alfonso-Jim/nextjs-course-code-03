@@ -11,3 +11,14 @@ export interface Event {
   location: string;
   title: string;
 }
+
+export interface HasError {
+  hasError: boolean;
+  events: Array<Event>;
+  date: Date;
+}
+
+export interface Date {
+  year: number;
+  month: number;
+}
