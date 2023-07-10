@@ -14,7 +14,7 @@ const HomePage: NextPage<Events> = (props) => {
 export const getStaticProps: GetStaticProps = async () => {
   const featuredEvents = await getFeaturedEvents();
 
-  return { props: { events: featuredEvents } };
+  return { props: { events: featuredEvents }, revalidate: 30 };
 };
 
 export default HomePage;

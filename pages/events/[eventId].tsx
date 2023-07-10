@@ -3,16 +3,16 @@ import EventSummary from '../../components/event-detail/event-summary';
 import EventLogistics from '../../components/event-detail/event-logistics';
 import EventContent from '../../components/event-detail/event-content';
 import ErrorAlert from '../../components/ui/ErrorAlert';
-import { getEventById, getAllEvents } from '../../helpers/api-util';
+import { getEventById, getFeaturedEvents } from '../../helpers/api-util';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { Event } from '../../interfaces/Interfaces';
 
 const SpecificEventPage: NextPage<Event> = (props) => {
   if (!props.id) {
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+      <div className='center'>
+        <p>Loading...</p>
+      </div>
     );
   }
 
@@ -38,11 +38,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 
-  return { props: event };
+  return { props: event, revalidate: 10 };
 };
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  const allEvents = await getAllEvents();
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allEvents = await getFeaturedEvents();
   const paths = allEvents.map((event) => ({ params: { eventId: event.id } }));
   return {
     paths: paths,
