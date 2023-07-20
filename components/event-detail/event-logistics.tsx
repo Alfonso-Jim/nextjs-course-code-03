@@ -1,8 +1,9 @@
-import AddressIcon from "../icons/address-icon";
-import DateIcon from "../icons/date-icon";
-import LogisticsItem from "./logistics-item";
-import classes from "./event-logistics.module.css";
-import { FC } from "react";
+import AddressIcon from '../icons/address-icon';
+import DateIcon from '../icons/date-icon';
+import LogisticsItem from './logistics-item';
+import classes from './event-logistics.module.css';
+import { FC } from 'react';
+import Image from 'next/image';
 
 interface Props {
   date: string;
@@ -12,17 +13,17 @@ interface Props {
 }
 
 const EventLogistics: FC<Props> = ({ date, address, image, imageAlt }) => {
-  const humanReadableDate = new Date(date).toLocaleDateString("pl-PL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
+  const humanReadableDate = new Date(date).toLocaleDateString('pl-PL', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
   });
-  const addressText = address.replace(", ", "\n");
+  const addressText = address.replace(', ', '\n');
 
   return (
     <section className={classes.logistics}>
       <div className={classes.image}>
-        <img src={`/${image}`} alt={imageAlt} />
+        <Image src={`/${image}`} alt={imageAlt} width={400} height={400} />
       </div>
       <ul className={classes.list}>
         <LogisticsItem Icon={DateIcon}>

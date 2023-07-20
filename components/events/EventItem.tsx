@@ -1,10 +1,12 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import classes from "./EventItem.module.css";
-import Button from "../ui/Button";
-import DateIcon from "../icons/date-icon";
-import AddressIcon from "../icons/address-icon";
-import ArrowRightIcon from "../icons/arrow-right-icon";
+import classes from './EventItem.module.css';
+import Button from '../ui/Button';
+import DateIcon from '../icons/date-icon';
+import AddressIcon from '../icons/address-icon';
+import ArrowRightIcon from '../icons/arrow-right-icon';
+
+import Image from 'next/image';
 
 interface Props {
   title: string;
@@ -15,12 +17,12 @@ interface Props {
 }
 
 const EventItem: FC<Props> = ({ title, image, date, location, id }) => {
-  const humanReadableDate = new Date(date).toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" });
-  const formattedAddress = location.replace(", ", "\n");
+  const humanReadableDate = new Date(date).toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' });
+  const formattedAddress = location.replace(', ', '\n');
   const exploreLink = `/events/${id}`;
   return (
     <li className={classes.item}>
-      <img src={`/${image}`} alt={title} />
+      <Image src={`/${image}`} alt={title} width={250} height={160} />
       <div className={classes.content}>
         <h2>{title}</h2>
         <div className={classes.date}>
