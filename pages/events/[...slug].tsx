@@ -32,16 +32,36 @@ const FilteredEventsPage: NextPage<HasError> = (props) => {
     }
   }, [data]);
 
+  let headData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name='description' content={`List of filtered events`} />
+    </Head>
+  );
+
   if (!events) {
-    return <p className='center'>Loading filtered events...</p>;
+    return (
+      <>
+        {headData}
+        <p className='center'>Loading filtered events...</p>;
+      </>
+    );
   }
 
   const filteredYear = Number(filterData[0]);
   const filteredMonth = Number(filterData[1]);
 
+  headData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name='description' content={`All events for ${filteredMonth}/${filteredYear}`} />
+    </Head>
+  );
+
   if (isNaN(filteredYear) || isNaN(filteredMonth) || filteredYear > 2030 || filteredYear < 2021 || filteredMonth < 1 || filteredMonth > 12 || error) {
     return (
       <>
+        {headData}
         <ErrorAlert>
           <p>Invalid filters, please check your values!</p>
         </ErrorAlert>
@@ -60,6 +80,7 @@ const FilteredEventsPage: NextPage<HasError> = (props) => {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {headData}
         <ErrorAlert>
           <p>No events found with current filters</p>
         </ErrorAlert>
@@ -73,14 +94,11 @@ const FilteredEventsPage: NextPage<HasError> = (props) => {
   const date = new Date(filteredYear, filteredMonth - 1);
 
   return (
-    <div>
-      <Head>
-        <title>Filtered Events</title>
-        <meta name='description' content={`All events for ${filteredMonth}/${filteredYear}`} />
-      </Head>
+    <>
+      {headData}
       <ResultsTitle date={date} />
       <EventList events={filteredEvents} />
-    </div>
+    </>
   );
 };
 
