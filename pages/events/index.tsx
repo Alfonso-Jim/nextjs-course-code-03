@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { getAllEvents } from '../../helpers/api-util';
 import { GetStaticProps, NextPage } from 'next';
 import { Events } from '../../interfaces/Interfaces';
+import Head from 'next/head';
 
 const AllEventsPage: NextPage<Events> = (props) => {
   const router = useRouter();
@@ -13,6 +14,10 @@ const AllEventsPage: NextPage<Events> = (props) => {
   };
   return (
     <>
+      <Head>
+        <title>All Events</title>
+        <meta name='description' content='Find a lot off cool events that allow you to inform yourself my dudes' />
+      </Head>
       <EventsSearch onSearch={findEventsHandler} />
       <EventList events={props.events} />
     </>

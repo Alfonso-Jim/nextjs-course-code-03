@@ -8,6 +8,7 @@ import Button from '../../components/ui/Button';
 import ErrorAlert from '../../components/ui/ErrorAlert';
 import { GetServerSideProps, NextPage } from 'next';
 import { Events, HasError } from '../../interfaces/Interfaces';
+import Head from 'next/head';
 
 const FilteredEventsPage: NextPage<HasError> = (props) => {
   const [events, setEvents] = useState(props.events);
@@ -73,6 +74,10 @@ const FilteredEventsPage: NextPage<HasError> = (props) => {
 
   return (
     <div>
+      <Head>
+        <title>Filtered Events</title>
+        <meta name='description' content={`All events for ${filteredMonth}/${filteredYear}`} />
+      </Head>
       <ResultsTitle date={date} />
       <EventList events={filteredEvents} />
     </div>

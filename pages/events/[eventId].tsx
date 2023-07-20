@@ -6,6 +6,7 @@ import ErrorAlert from '../../components/ui/ErrorAlert';
 import { getEventById, getFeaturedEvents } from '../../helpers/api-util';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { Event } from '../../interfaces/Interfaces';
+import Head from 'next/head';
 
 const SpecificEventPage: NextPage<Event> = (props) => {
   if (!props.id) {
@@ -18,6 +19,10 @@ const SpecificEventPage: NextPage<Event> = (props) => {
 
   return (
     <Fragment>
+      <Head>
+        <title>{props.title}</title>
+        <meta name='description' content={props.description} />
+      </Head>
       <EventSummary title={props.title} />
       <EventLogistics date={props.date} address={props.location} image={props.image} imageAlt={props.title} />
       <EventContent>
